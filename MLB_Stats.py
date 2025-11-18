@@ -49,6 +49,7 @@ hitter_cols = [id_col, 'Name', 'Season', 'Age', 'G', 'PA', 'AB', 'H', 'HR', 'R',
                'Off', 'Def', 'WAR']
 hitter_cols = [col for col in hitter_cols if col in hitters.columns]
 hitters = hitters[hitter_cols].dropna()
+hitters = hitters[hitters['Season'] != 2020]
 
 for stat in ['HR', 'AVG', 'OBP', 'SLG', 'ISO', 'wOBA']:
     if stat in hitters.columns:
@@ -87,6 +88,7 @@ pitcher_cols = [id_col_p, 'Name', 'Season', 'Age', 'W', 'L', 'G', 'GS', 'IP', 'H
                 'BB', 'SO', 'K%', 'BB%', 'K-BB%', 'HR/9', 'WHIP', 'FIP', 'xFIP', 'ERA', 'WAR']
 pitcher_cols = [col for col in pitcher_cols if col in pitchers.columns]
 pitchers = pitchers[pitcher_cols].dropna()
+pitchers = pitchers[pitchers['Season'] != 2020]
 
 for stat in ['ERA', 'FIP', 'xFIP', 'K%', 'BB%', 'HR/9']:
     if stat in pitchers.columns:
