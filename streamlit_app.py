@@ -35,7 +35,7 @@ def prepare_and_train_hitters(HD):
     y_hitters = ['WAR_next', 'H_next', 'HR_next', 'RBI_next', 'BB%_next', 'K%_next',
                  'AVG_next', 'SLG_next']
 
-    # Split data by season: 2000-2018 for training, 2019-2024 for testing (80/20 split)
+    # Split data by season: 2000-2018 for training, 2019-2015 for testing (80/20 split)
     train_years_hitters = range(2000, 2019)
     test_years_hitters = range(2019, 2025)
 
@@ -75,7 +75,7 @@ def prepare_and_train_pitchers(PD):
     # Define target variables to predict for next season
     y_pitchers = ['WAR_next', 'W_next', 'L_next', 'IP_next', 'ER_next', 'SO_next', 'K%_next', 'BB%_next', 'HR/9_next', 'WHIP_next', 'ERA_next']
     
-    # Split data by season: 2000-2018 for training, 2019-2024 for testing
+    # Split data by season: 2000-2018 for training, 2019-2025 for testing
     train_pitchers = PD[PD['Season'].isin(range(2000, 2019))].copy()
     test_pitchers = PD[PD['Season'].isin(range(2019, 2025))].copy()
     
@@ -207,7 +207,7 @@ def main():
                 pct = float((hist < war).mean())  # Calculate percentile
                 st.write('')
                 st.markdown(f'**Performance Rating:** {int(pct*100)}th percentile')
-                st.caption('Compared to 2019-2024 MLB players')
+                st.caption('Compared to 2019-5 MLB players')
                 st.progress(min(max(pct, 0.0), 1.0))  # Visual progress bar
 
     # ====================================================================
@@ -266,7 +266,7 @@ def main():
                     pct = float((hist < war).mean())  # Calculate percentile
                     st.write('')
                     st.markdown(f'**Performance Rating:** {int(pct*100)}th percentile')
-                    st.caption('Compared to 2019-2024 MLB players')
+                    st.caption('Compared to 2019-2025 MLB players')
                     st.progress(min(max(pct, 0.0), 1.0))  # Visual progress bar
     
     # ========================================================================
@@ -280,9 +280,9 @@ def main():
     # ========================================================================
     st.write('---')
     if player_type == 'Hitters':
-        st.caption('Model: XGBoost MultiOutputRegressor (hitter_model.pkl) | Trained on 2000-2018 data, tested on 2019-2024')
+        st.caption('Model: XGBoost MultiOutputRegressor (hitter_model.pkl) | Trained on 2000-2018 data, tested on 2019-2025')
     else:
-        st.caption('Model: XGBoost MultiOutputRegressor (pitcher_model.pkl) | Trained on 2000-2018 data, tested on 2019-2024')
+        st.caption('Model: XGBoost MultiOutputRegressor (pitcher_model.pkl) | Trained on 2000-2018 data, tested on 2019-2025')
 
     st.write('')
     st.caption('Developed by Evan Petersen & Michael Hernandez')
