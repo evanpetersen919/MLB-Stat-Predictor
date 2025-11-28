@@ -81,7 +81,3 @@ python MLB_Stats.py
 - Scikit-learn
 - Streamlit
 - Pandas, NumPy, Matplotlib
-
-## License
-
-MIT License
